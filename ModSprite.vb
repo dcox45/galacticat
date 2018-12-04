@@ -13,6 +13,7 @@
         Dim mRectangle As Rectangle
         Dim CellTop As Integer
         Dim facingRight As Boolean
+        Dim onFloor As Boolean
 
     End Structure
 
@@ -41,17 +42,18 @@
     End Sub
 
     Public Sub MoveMax()
-        Max.Speed.Y += gravity
+        Max.Speed.Y = GetVerticalSpeed()
         Max.Position.X += Max.Speed.X
         Max.Position.Y += Max.Speed.Y
 
-        If Max.Position.Y > 200 Then
-            Max.Position.Y = 200
-            Max.Speed.Y = 0
-        End If
-
         Max.mRectangle.X = Max.Position.X
         Max.mRectangle.Y = Max.Position.Y
+
+        If Max.Position.X > (650 + Max.CellWidth) Then
+            Max.Position.X = 0 - Max.CellWidth
+        ElseIf Max.Position.X + Max.CellWidth < 0 Then
+            Max.Position.X = 650
+        End If
 
     End Sub
 
@@ -62,21 +64,21 @@
 
     Public Sub AnimateMax()
         Max.CellTop += Max.CellHeight
-        If Max.Speed.X > 0 And Max.Speed.Y = 0 Then
+        If Max.Speed.X > 0 And Max.onFloor = True Then
             If Max.CellTop > Max.CellHeight * 2 Then
                 Max.CellTop = 0
             End If
-        ElseIf Max.Speed.X < 0 And Max.Speed.Y = 0 Then
+        ElseIf Max.Speed.X < 0 And Max.onFloor = True Then
             If Max.CellTop < Max.CellHeight * 3 Or Max.CellTop > Max.CellHeight * 5 Then
                 Max.CellTop = Max.CellHeight * 3
             End If
-        ElseIf Max.Speed.X = 0 And Max.Speed.Y = 0 Then
+        ElseIf Max.Speed.X = 0 And Max.onFloor = True Then
             If Max.facingRight = True Then
                 Max.CellTop = Max.CellHeight * 6
             Else
                 Max.CellTop = Max.CellHeight * 7
             End If
-        ElseIf Max.Speed.Y <> 0 Then
+        ElseIf Max.onFloor = False Then
             If Max.facingRight = True Then
                 Max.CellTop = Max.CellHeight * 8
             Else
@@ -84,5 +86,38 @@
             End If
         End If
     End Sub
+
+    Public Function GetVerticalSpeed()
+        Dim nextVStep As Integer
+        nextVStep = Max.Speed.Y + gravity
+        Dim index As Integer
+        Max.onFloor = False
+        For index = 0 To 7
+            If Max.Position.X + Max.CellWidth > Floors(index).Left And Max.Position.X <
+                    Floors(index).Right Then
+                If nextVStep > 0 Then
+                    If Max.Position.Y + Max.CellHeight <= Floors(index).Top Then
+                        If Max.Position.Y + Max.CellHeight + nextVStep > Floors(index).Top Then
+                            nextVStep = Floors(index).Top - (Max.Position.Y +
+                                +Max.CellHeight)
+                            Max.onFloor = True
+                        End If
+                    End If
+                End If
+
+                If nextVStep <= 0 Then
+                    If Max.Position.Y >= Floors(index).Bottom Then
+                        If Max.Position.Y + nextVStep < Floors(index).Bottom Then
+                            nextVStep = Floors(index).Bottom - Max.Position.Y
+
+                        End If
+                    End If
+                End If
+            End If
+        Next index
+        Return nextVStep
+
+
+    End Function
 
 End Module

@@ -58,25 +58,25 @@
         Floors(3).Left = -50
         Floors(3).Right = 97
 
-        Floors(4).Top = 204
-        Floors(4).Bottom = 450
-        Floors(4).Left = -50
+        Floors(4).Top = 218
+        Floors(4).Bottom = 232
+        Floors(4).Left = 548
         Floors(4).Right = 700
 
-        Floors(5).Bottom = 204
-        Floors(5).Left = 218
-        Floors(5).Right = 165
-        Floors(5).Top = 475
+        Floors(5).Top = 204
+        Floors(5).Bottom = 218
+        Floors(5).Left = 165
+        Floors(5).Right = 475
 
-        Floors(6).Bottom = 96
-        Floors(6).Left = 110
-        Floors(6).Right = -50
-        Floors(6).Top = 265
+        Floors(6).Top = 96
+        Floors(6).Bottom = 110
+        Floors(6).Left = -50
+        Floors(6).Right = 265
 
-        Floors(7).Bottom = 96
-        Floors(7).Left = 110
-        Floors(7).Right = 380
-        Floors(7).Top = 700
+        Floors(7).Top = 96
+        Floors(7).Bottom = 110
+        Floors(7).Left = 380
+        Floors(7).Right = 700
 
 
 

@@ -10,7 +10,7 @@
             Max.facingRight = True
         End If
 
-        If e.KeyCode = Keys.Up Then
+        If e.KeyCode = Keys.Up And Max.onFloor = True Then
             Max.Speed.Y = -Max.StartSpeed.Y
         End If
 
