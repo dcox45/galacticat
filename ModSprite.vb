@@ -20,11 +20,12 @@
     End Structure
 
     Public Max As Sprite
-    Public Const gravity As Integer = 1.3
+    Public Const GRAVITY As Integer = 1.3
     Public Const NUMBADGUYS As Integer = 6
     Public Const NORMAL As Integer = 0
-    Public Const DEAD As Integer = 0
-    Public Const REVIVE As Integer = 0
+    Public Const DEAD As Integer = 1
+    Public Const REVIVE As Integer = 2
+    Public Const FLIP As Integer = 3
 
 
     Public Badguys(NUMBADGUYS) As Sprite
@@ -78,12 +79,29 @@
             Guy.Position.X = 650
         End If
 
-        If Guy.Position.X < -10 And Guy.Position.Y > 360 Then
-            Guy.Position.X = 650 - Guy.CellWidth
-            Guy.Position.Y = 20
-        ElseIf Guy.Position.X > backdrop.Width And Guy.Position.Y > 360 Then
-            Guy.Position.X = 50
-            Guy.Position.Y = 20
+        If Guy.state <> DEAD Then
+            'Loops around sides of screen
+            If Guy.Position.X + Guy.CellWidth < 0 Then
+                Guy.Position.X = 650
+            ElseIf Guy.Position.X > 650 Then
+                Guy.Position.X = 0 - Guy.CellWidth
+            End If
+
+            'Go through sides at bottom of screen and appear at the top of the screen
+            If Guy.Position.X < 0 And Guy.Position.Y > 360 Then
+                Guy.Position.X = 568 - Guy.CellWidth
+                Guy.Position.Y = 20
+            ElseIf Guy.Position.X > backdrop.Width And Guy.Position.Y > 360 Then
+                Guy.Position.X = 80
+                Guy.Position.Y = 20
+            End If
+
+        Else
+            If Guy.Position.Y > 1000 Then
+                Guy.Position.Y = 1000
+                Guy.Position.X = 0
+
+            End If
         End If
 
     End Sub
@@ -132,24 +150,41 @@
         For index = 0 To NumMovingBadguys
 
             Badguys(index).CellTop += Badguys(index).CellHeight
-            If Badguys(index).Speed.X >= 0 Then
-                If Badguys(index).CellTop > Badguys(index).CellHeight * 1 Then
-                    Badguys(index).CellTop = 0
-                End If
-            ElseIf Badguys(index).Speed.X < 0 Then
-                If Badguys(index).CellTop < Badguys(index).CellHeight * 2 Or Badguys(index).CellTop >
+            If Badguys(index).state = NORMAL Then
+                If Badguys(index).Speed.X >= 0 Then
+                    If Badguys(index).CellTop > Badguys(index).CellHeight * 1 Then
+                        Badguys(index).CellTop = 0
+                    End If
+                ElseIf Badguys(index).Speed.X < 0 Then
+                    If Badguys(index).CellTop < Badguys(index).CellHeight * 2 Or Badguys(index).CellTop >
                         Badguys(index).CellHeight * 3 Then
-                    Badguys(index).CellTop = Badguys(index).CellHeight * 2
+                        Badguys(index).CellTop = Badguys(index).CellHeight * 2
+                    End If
+                End If
+            ElseIf Badguys(index).state = FLIP Or Badguys(index).state = DEAD Then
+                If Badguys(index).onFloor = False Then
+                    If Badguys(index).CellTop < Badguys(index).CellHeight * 4 Or
+                            Badguys(index).CellTop > Badguys(index).CellHeight * 7 Then
+                        Badguys(index).CellTop = Badguys(index).CellHeight * 4
+                    End If
+                Else
+                    If Badguys(index).CellTop < Badguys(index).CellHeight * 8 Or
+                            Badguys(index).CellTop > Badguys(index).CellHeight * 9 Then
+                        Badguys(index).CellTop = Badguys(index).CellHeight * 8
+                    End If
                 End If
             End If
+
         Next index
     End Sub
 
     Public Function GetVerticalSpeed(ByRef Guy As Sprite)
         Dim nextVStep As Integer
-        nextVStep = Guy.Speed.Y + gravity
         Dim index As Integer
-        If Guy.state = NORMAL Then
+
+        nextVStep = Guy.Speed.Y + GRAVITY
+
+        If Guy.state <> DEAD Then
             Guy.onFloor = False
             For index = 0 To 7
                 If Guy.Position.X + Guy.CellWidth > Floors(index).Left And Guy.Position.X <
@@ -214,6 +249,30 @@
             Max.Position.Y = 50
             Max.Speed.Y = 0
         End If
+    End Sub
+
+    Public Sub CheckKillBadguys()
+        Dim index As Integer
+        Dim shiftedMax As Sprite
+        shiftedMax = Max
+        shiftedMax.Position.Y -= 20
+        For index = 0 To NumMovingBadguys
+            If Badguys(index).onFloor And Badguys(index).state <> DEAD Then
+                If Max.state = NORMAL And Collision(shiftedMax, Badguys(index)) Then
+                    Badguys(index).state = FLIP
+                    Badguys(index).Speed.X = 0
+                    Badguys(index).Speed.Y = -20
+                End If
+            End If
+
+            If Max.state = NORMAL And Badguys(index).state = FLIP And Collision(Max,
+                Badguys(index)) = True Then
+                Badguys(index).state = DEAD
+                Badguys(index).onFloor = False
+                Badguys(index).Speed.X = Max.Speed.X
+                Badguys(index).Speed.Y = -20
+            End If
+        Next index
     End Sub
 
 End Module

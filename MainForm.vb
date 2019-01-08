@@ -68,6 +68,7 @@
         Call AnimateMax()
         Call AnimateBadGuy()
         Call CheckKillMax()
+        Call CheckKillBadguys()
         Call ReviveMax()
         Call ScreenDraw()
 
