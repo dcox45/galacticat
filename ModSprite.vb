@@ -16,10 +16,10 @@
         Dim onFloor As Boolean
         Dim radius As Integer
         Dim state As Integer 'the state of the sprite
+        Dim timeflipped As Integer
 
     End Structure
 
-    Public Max As Sprite
     Public Const GRAVITY As Integer = 1.3
     Public Const NUMBADGUYS As Integer = 6
     Public Const NORMAL As Integer = 0
@@ -27,8 +27,9 @@
     Public Const REVIVE As Integer = 2
     Public Const FLIP As Integer = 3
 
-
+    Public Max As Sprite
     Public Badguys(NUMBADGUYS) As Sprite
+    Public Milk As Sprite
 
 
     Public NumMovingBadguys As Integer
@@ -260,8 +261,19 @@
             If Badguys(index).onFloor And Badguys(index).state <> DEAD Then
                 If Max.state = NORMAL And Collision(shiftedMax, Badguys(index)) Then
                     Badguys(index).state = FLIP
+                    Badguys(index).timeflipped = 0
                     Badguys(index).Speed.X = 0
                     Badguys(index).Speed.Y = -20
+                End If
+            End If
+
+            If Badguys(index).state = FLIP Then
+                Badguys(index).timeflipped += 1
+                If Badguys(index).timeflipped > 100 Then
+                    Badguys(index).timeflipped = 0
+                    Badguys(index).state = NORMAL
+                    Badguys(index).Speed.X = Badguys(index).StartSpeed.X
+                    Badguys(index).Speed.Y = Badguys(index).StartSpeed.Y
                 End If
             End If
 
@@ -273,6 +285,22 @@
                 Badguys(index).Speed.Y = -20
             End If
         Next index
+    End Sub
+
+    Public Sub CheckMilkButton()
+        If Collision(Max, Milk) And Max.state <> DEAD And Milk.state = NORMAL And
+        Max.Speed.Y < 0 Then
+            Milk.state = DEAD
+            Max.Speed.Y = Milk.Position.Y + Milk.CellWidth - Milk.Position.Y
+            For index = 0 To NumMovingBadguys
+                If Badguys(index).onFloor = True And Badguys(index).state <> DEAD Then
+                    Badguys(index).state = FLIP
+                    Badguys(index).Speed.X = 0
+                    Badguys(index).Speed.Y = 0
+                    Badguys(index).timeflipped = 0
+                End If
+            Next
+        End If
     End Sub
 
 End Module

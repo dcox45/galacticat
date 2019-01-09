@@ -42,6 +42,8 @@
             End If
         Next index
 
+        Call LoadSprite(Milk, "milk.png", 1, 0, 0, 300, 300)
+
         Call LoadBackground()
         Call FloorSet()
         Call DrawScreenSet()
@@ -69,6 +71,7 @@
         Call AnimateBadGuy()
         Call CheckKillMax()
         Call CheckKillBadguys()
+        Call CheckMilkButton()
         Call ReviveMax()
         Call ScreenDraw()
 
@@ -89,9 +92,14 @@
 
         Call BackgroundDraw()
         Call DrawSprite(Max)
+        If Milk.state = NORMAL Then
+            Call DrawSprite(Milk)
+        End If
         For index = 0 To NumMovingBadguys
             Call DrawSprite(Badguys(index))
         Next index
+
+
 
 
         g.DrawImage(imageOffScreen, 0, 0)
