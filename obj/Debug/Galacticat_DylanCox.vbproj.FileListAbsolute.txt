@@ -9,3 +9,5 @@ C:\Users\Dylan\Desktop\RP4K\Galacticat_DylanCox\Galacticat_DylanCox\bin\Debug\Ga
 C:\Users\Dylan\Desktop\RP4K\Galacticat_DylanCox\Galacticat_DylanCox\obj\Debug\Galacticat_DylanCox.exe
 C:\Users\Dylan\Desktop\RP4K\Galacticat_DylanCox\Galacticat_DylanCox\obj\Debug\Galacticat_DylanCox.xml
 C:\Users\Dylan\Desktop\RP4K\Galacticat_DylanCox\Galacticat_DylanCox\obj\Debug\Galacticat_DylanCox.pdb
+C:\Users\Dylan\Desktop\RP4K\Galacticat_DylanCox\Galacticat_DylanCox\obj\Debug\Galacticat_DylanCox.frmGameOver.resources
+C:\Users\Dylan\Desktop\RP4K\Galacticat_DylanCox\Galacticat_DylanCox\obj\Debug\Galacticat_DylanCox.frmYouWin.resources

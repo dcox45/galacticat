@@ -13,7 +13,7 @@
             End If
 
             If e.KeyCode = Keys.Up And Max.onFloor = True Then
-                Max.Speed.Y = -Max.StartSpeed.Y
+                Max.Speed.Y = -(Max.StartSpeed.Y + 12)
             End If
         End If
 
@@ -28,30 +28,24 @@
     End Sub
 
     Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Dim index As Integer
-
-        Call LoadSprite(Max, "Galacticat.png", 15, 11, 17, 300, 380)
-        Max.Speed.X = 0
-        Max.state = NORMAL
-
-        For index = 0 To NUMBADGUYS
-            If index Mod 2 = 0 Then
-                Call LoadSprite(Badguys(index), "Fangs.png", 10, 5, 17, 107, 40)
-            Else
-                Call LoadSprite(Badguys(index), "Fangs.png", 10, -5, 17, 528, 40)
-            End If
-        Next index
-
-        Call LoadSprite(Milk, "milk.png", 1, 0, 0, 300, 300)
-
+        quit = False
+        levelNumber = 1
+        lblLevelNumber.Text = "Level: " + levelNumber.ToString
+        Call ResetLevel()
         Call LoadBackground()
         Call FloorSet()
         Call DrawScreenSet()
+        My.Computer.Audio.Play(IO.Path.GetDirectoryName(Application.ExecutablePath) & "\sounds\ChillingMusic.wav",
+                                                                                AudioPlayMode.BackgroundLoop)
         Timer1.Start()
     End Sub
 
     Private Sub Timer1_Tick(sender As System.Object, e As System.EventArgs) Handles Timer1.Tick
         Dim index As Integer
+
+        If quit = True Then
+            Me.Close()
+        End If
 
         Call MoveSprite(Max)
 
@@ -74,6 +68,10 @@
         Call CheckMilkButton()
         Call ReviveMax()
         Call ScreenDraw()
+        Call CheckGameOver()
+        Call CheckYouWin()
+
+
 
     End Sub
 
@@ -87,26 +85,83 @@
 
     Private Sub ScreenDraw()
         Dim index As Integer
-        g = picDrawOnScreen.CreateGraphics
-        offG = Graphics.FromImage(imageOffScreen)
+        If quit = False Then
+            g = picDrawOnScreen.CreateGraphics
+            offG = Graphics.FromImage(imageOffScreen)
 
-        Call BackgroundDraw()
-        Call DrawSprite(Max)
-        If Milk.state = NORMAL Then
-            Call DrawSprite(Milk)
+            Call BackgroundDraw()
+            Call DrawSprite(Max)
+
+            If Milk.state = NORMAL Then
+                Call DrawSprite(Milk)
+            End If
+
+            For index = 0 To NumMovingBadguys
+                Call DrawSprite(Badguys(index))
+            Next index
+
+
+
+
+            g.DrawImage(imageOffScreen, 0, 0)
+            g.Dispose()
+            offG.Dispose()
+
         End If
-        For index = 0 To NumMovingBadguys
-            Call DrawSprite(Badguys(index))
-        Next index
 
-
-
-
-        g.DrawImage(imageOffScreen, 0, 0)
-        g.Dispose()
-        offG.Dispose()
     End Sub
 
+    Private Sub ResetLevel()
+        Dim index As Integer
+        quit = False
 
+        Call LoadSprite(Max, "Galacticat.png", 15, 11, 17, 300, 380)
+        Max.Speed.X = 0
+        Max.state = NORMAL
+        LivesLeft = 3
+
+        Call LoadSprite(Milk, "milk.png", 1, 0, 0, 300, 300)
+
+        For index = 0 To NUMBADGUYS
+            If index Mod 2 = 0 Then
+                Call LoadSprite(Badguys(index), "Fangs.png", 10, 5, 17, 107, 40)
+            Else
+                Call LoadSprite(Badguys(index), "Fangs.png", 10, -5, 17, 528, 40)
+            End If
+        Next index
+        lblLives.Text = "Lives: " + LivesLeft.ToString
+        TimerCounter = 0
+        NumBadGuysKilled = 0
+    End Sub
+
+    Public Sub CheckGameOver()
+        If Max.state = DEAD Then
+            If LivesLeft <= 0 Then
+                Timer1.Stop()
+                frmGameOver.ShowDialog()
+                If quit = True Then
+                    Me.Close()
+                End If
+                levelNumber = 1
+                lblLevelNumber.Text = "Level: " + levelNumber.ToString
+                Call ResetLevel()
+                Timer1.Start()
+            End If
+        End If
+    End Sub
+
+    Public Sub CheckYouWin()
+        If NumBadGuysKilled > NUMBADGUYS Then
+            Timer1.Stop()
+            frmYouWin.ShowDialog()
+            If quit = True Then
+                Me.Close()
+            End If
+            levelNumber += 1
+            lblLevelNumber.Text = "Level: " + levelNumber.ToString
+            Call ResetLevel()
+            Timer1.Start()
+        End If
+    End Sub
 
 End Class

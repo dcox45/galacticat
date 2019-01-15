@@ -73,6 +73,18 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmGameOver.Designer.vb">
+      <DependentUpon>frmGameOver.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmGameOver.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmYouWin.Designer.vb">
+      <DependentUpon>frmYouWin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmYouWin.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MainForm.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +111,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmGameOver.resx">
+      <DependentUpon>frmGameOver.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmYouWin.resx">
+      <DependentUpon>frmYouWin.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.vb</DependentUpon>
     </EmbeddedResource>

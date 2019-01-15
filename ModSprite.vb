@@ -20,7 +20,7 @@
 
     End Structure
 
-    Public Const GRAVITY As Integer = 1.3
+    Public Const GRAVITY As Integer = 3
     Public Const NUMBADGUYS As Integer = 6
     Public Const NORMAL As Integer = 0
     Public Const DEAD As Integer = 1
@@ -30,10 +30,13 @@
     Public Max As Sprite
     Public Badguys(NUMBADGUYS) As Sprite
     Public Milk As Sprite
-
-
     Public NumMovingBadguys As Integer
     Public TimerCounter As Integer
+    Public LivesLeft As Integer
+    Public quit As Boolean
+    Public levelNumber As Integer
+    Public NumBadGuysKilled As Integer
+
 
     Public Sub LoadSprite(ByRef Guy As Sprite, ByVal picname As String, ByVal numCells As Integer,
                           ByVal xspeed As Integer, ByVal yspeed As Integer, ByVal xpos As Integer,
@@ -234,7 +237,10 @@
             Badguys(index).state = NORMAL Then
                 Max.state = DEAD
                 Max.Speed.X = 0
-                Max.Speed.Y = -20
+                Max.Speed.Y = -15
+                LivesLeft -= 1
+                MainForm.lblLives.Text = "LivesLeft: " + LivesLeft.ToString
+
             End If
         Next index
     End Sub
@@ -264,6 +270,7 @@
                     Badguys(index).timeflipped = 0
                     Badguys(index).Speed.X = 0
                     Badguys(index).Speed.Y = -20
+                    NumBadGuysKilled += 1
                 End If
             End If
 
