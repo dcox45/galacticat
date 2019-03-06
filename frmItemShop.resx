@@ -117,38 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="Timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="Heart0.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACMAAAAiCAYAAADVhWD8AAAABGdBTUEAALGPC/xhBQAAALxJREFUWEft
-        1EsKAjEQRdFsSsGx+1+GO3DegvSV6nSK/CoVlVx4I9PFGRlWq7/rcbtsJdufn0q91bZ/ckw+eN6v2WnH
-        um/UHJCLj7XcOdzQDsji3+T4XrtTMr59Y1IPZKnf5VoRcr+DqdnCjNzCaPs+DH98qQde+0BoFugEIW+Q
-        CiEvUBZCo0HFEBoFqoaQNagZQlagbgj1gswg1Aoyh1AtaBiESkHDIZQDuUFIA7lDKAZNgxCg6RCygYTw
-        Ag+qeoE8FAPLAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="Heart2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACMAAAAiCAYAAADVhWD8AAAABGdBTUEAALGPC/xhBQAAALxJREFUWEft
-        1EsKAjEQRdFsSsGx+1+GO3DegvSV6nSK/CoVlVx4I9PFGRlWq7/rcbtsJdufn0q91bZ/ckw+eN6v2WnH
-        um/UHJCLj7XcOdzQDsji3+T4XrtTMr59Y1IPZKnf5VoRcr+DqdnCjNzCaPs+DH98qQde+0BoFugEIW+Q
-        CiEvUBZCo0HFEBoFqoaQNagZQlagbgj1gswg1Aoyh1AtaBiESkHDIZQDuUFIA7lDKAZNgxCg6RCygYTw
-        Ag+qeoE8FAPLAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="Heart1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAACMAAAAiCAYAAADVhWD8AAAABGdBTUEAALGPC/xhBQAAALxJREFUWEft
-        1EsKAjEQRdFsSsGx+1+GO3DegvSV6nSK/CoVlVx4I9PFGRlWq7/rcbtsJdufn0q91bZ/ckw+eN6v2WnH
-        um/UHJCLj7XcOdzQDsji3+T4XrtTMr59Y1IPZKnf5VoRcr+DqdnCjNzCaPs+DH98qQde+0BoFugEIW+Q
-        CiEvUBZCo0HFEBoFqoaQNagZQlagbgj1gswg1Aoyh1AtaBiESkHDIZQDuUFIA7lDKAZNgxCg6RCygYTw
-        Ag+qeoE8FAPLAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="BackPackMilk.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="BtnPortableMilk.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACQAAAAYCAYAAACSuF9OAAAABGdBTUEAALGOfPtRkwAAACBjSFJNAACH
         DwAAjA8AAP1SAACBQAAAfXkAAOmLAAA85QAAGcxzPIV3AAAKOWlDQ1BQaG90b3Nob3AgSUNDIHByb2Zp
@@ -213,7 +183,4 @@
         L1/hbwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>49</value>
-  </metadata>
 </root>

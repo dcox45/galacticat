@@ -11,3 +11,17 @@ C:\Users\Dylan\Desktop\RP4K\Galacticat_DylanCox\Galacticat_DylanCox\obj\Debug\Ga
 C:\Users\Dylan\Desktop\RP4K\Galacticat_DylanCox\Galacticat_DylanCox\obj\Debug\Galacticat_DylanCox.pdb
 C:\Users\Dylan\Desktop\RP4K\Galacticat_DylanCox\Galacticat_DylanCox\obj\Debug\Galacticat_DylanCox.frmGameOver.resources
 C:\Users\Dylan\Desktop\RP4K\Galacticat_DylanCox\Galacticat_DylanCox\obj\Debug\Galacticat_DylanCox.frmYouWin.resources
+C:\Users\Dylan\Desktop\RP4K\My_Projects\Galacticat_DylanCox\Galacticat_DylanCox\bin\Debug\Galacticat_DylanCox.exe.config
+C:\Users\Dylan\Desktop\RP4K\My_Projects\Galacticat_DylanCox\Galacticat_DylanCox\obj\Debug\Galacticat_DylanCox.exe
+C:\Users\Dylan\Desktop\RP4K\My_Projects\Galacticat_DylanCox\Galacticat_DylanCox\obj\Debug\Galacticat_DylanCox.xml
+C:\Users\Dylan\Desktop\RP4K\My_Projects\Galacticat_DylanCox\Galacticat_DylanCox\obj\Debug\Galacticat_DylanCox.pdb
+C:\Users\Dylan\Desktop\RP4K\My_Projects\Galacticat_DylanCox\Galacticat_DylanCox\bin\Debug\Galacticat_DylanCox.exe
+C:\Users\Dylan\Desktop\RP4K\My_Projects\Galacticat_DylanCox\Galacticat_DylanCox\bin\Debug\Galacticat_DylanCox.pdb
+C:\Users\Dylan\Desktop\RP4K\My_Projects\Galacticat_DylanCox\Galacticat_DylanCox\bin\Debug\Galacticat_DylanCox.xml
+C:\Users\Dylan\Desktop\RP4K\My_Projects\Galacticat_DylanCox\Galacticat_DylanCox\obj\Debug\Galacticat_DylanCox.vbprojResolveAssemblyReference.cache
+C:\Users\Dylan\Desktop\RP4K\My_Projects\Galacticat_DylanCox\Galacticat_DylanCox\obj\Debug\Galacticat_DylanCox.frmGameOver.resources
+C:\Users\Dylan\Desktop\RP4K\My_Projects\Galacticat_DylanCox\Galacticat_DylanCox\obj\Debug\Galacticat_DylanCox.frmYouWin.resources
+C:\Users\Dylan\Desktop\RP4K\My_Projects\Galacticat_DylanCox\Galacticat_DylanCox\obj\Debug\Galacticat_DylanCox.MainForm.resources
+C:\Users\Dylan\Desktop\RP4K\My_Projects\Galacticat_DylanCox\Galacticat_DylanCox\obj\Debug\Galacticat_DylanCox.Resources.resources
+C:\Users\Dylan\Desktop\RP4K\My_Projects\Galacticat_DylanCox\Galacticat_DylanCox\obj\Debug\Galacticat_DylanCox.vbproj.GenerateResource.Cache
+C:\Users\Dylan\Desktop\RP4K\My_Projects\Galacticat_DylanCox\Galacticat_DylanCox\obj\Debug\Galacticat_DylanCox.frmItemShop.resources

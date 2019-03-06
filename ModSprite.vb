@@ -21,7 +21,7 @@
     End Structure
 
     Public Const GRAVITY As Integer = 3
-    Public Const NUMBADGUYS As Integer = 6
+    Public NUMBADGUYS As Integer = 6
     Public Const NORMAL As Integer = 0
     Public Const DEAD As Integer = 1
     Public Const REVIVE As Integer = 2
@@ -30,12 +30,23 @@
     Public Max As Sprite
     Public Badguys(NUMBADGUYS) As Sprite
     Public Milk As Sprite
+    Public ItemShop As Sprite
+    Public ItemShopMilk As Sprite
+
+    'Public bckpckmilk As PictureBox
+
     Public NumMovingBadguys As Integer
     Public TimerCounter As Integer
     Public LivesLeft As Integer
     Public quit As Boolean
     Public levelNumber As Integer
     Public NumBadGuysKilled As Integer
+    Public MaxHasMilk As Boolean
+
+    Public score As Integer
+
+
+
 
 
     Public Sub LoadSprite(ByRef Guy As Sprite, ByVal picname As String, ByVal numCells As Integer,
@@ -239,10 +250,36 @@
                 Max.Speed.X = 0
                 Max.Speed.Y = -15
                 LivesLeft -= 1
-                MainForm.lblLives.Text = "LivesLeft: " + LivesLeft.ToString
+                MainForm.lblLives.Text = "Lives: " + LivesLeft.ToString
 
             End If
         Next index
+
+        If LivesLeft = 3 Then
+            MainForm.Heart0.Image = Image.FromFile(IO.Path.GetDirectoryName(Application.ExecutablePath) &
+                                     "\pics\heart.png")
+            MainForm.Heart1.Image = Image.FromFile(IO.Path.GetDirectoryName(Application.ExecutablePath) &
+                                     "\pics\heart.png")
+            MainForm.Heart2.Image = Image.FromFile(IO.Path.GetDirectoryName(Application.ExecutablePath) &
+                                     "\pics\heart.png")
+        ElseIf LivesLeft = 2 Then
+            MainForm.Heart0.Image = Image.FromFile(IO.Path.GetDirectoryName(Application.ExecutablePath) &
+                                     "\pics\heart.png")
+            MainForm.Heart1.Image = Image.FromFile(IO.Path.GetDirectoryName(Application.ExecutablePath) &
+                                     "\pics\heart.png")
+            MainForm.Heart2.Image = Nothing
+        ElseIf LivesLeft = 1 Then
+            MainForm.Heart0.Image = Image.FromFile(IO.Path.GetDirectoryName(Application.ExecutablePath) &
+                                     "\pics\heart.png")
+            MainForm.Heart1.Image = Nothing
+            MainForm.Heart2.Image = Nothing
+
+        Else
+            MainForm.Heart0.Image = Nothing
+            MainForm.Heart1.Image = Nothing
+            MainForm.Heart2.Image = Nothing
+
+        End If
     End Sub
 
     Public Sub ReviveMax()
@@ -270,7 +307,6 @@
                     Badguys(index).timeflipped = 0
                     Badguys(index).Speed.X = 0
                     Badguys(index).Speed.Y = -20
-                    NumBadGuysKilled += 1
                 End If
             End If
 
@@ -285,11 +321,17 @@
             End If
 
             If Max.state = NORMAL And Badguys(index).state = FLIP And Collision(Max,
-                Badguys(index)) = True Then
+                                                        Badguys(index)) = True Then
+                score += (100 - Badguys(index).timeflipped)
+                If score > 80 Then
+                    score *= 2
+                End If
                 Badguys(index).state = DEAD
                 Badguys(index).onFloor = False
                 Badguys(index).Speed.X = Max.Speed.X
                 Badguys(index).Speed.Y = -20
+                MainForm.lblScore.Text = "Score:  " + score.ToString
+                NumBadGuysKilled += 1
             End If
         Next index
     End Sub
@@ -308,6 +350,13 @@
                 End If
             Next
         End If
+    End Sub
+
+
+    Public Sub UseItemShopMilk()
+        MainForm.BackPackMilk.Left = Max.Position.X
+        MainForm.BackPackMilk.Top = Max.Position.Y
+
     End Sub
 
 End Module

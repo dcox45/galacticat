@@ -7,4 +7,9 @@
         quit = True
         Hide()
     End Sub
+
+    Private Sub frmYouWin_Shown(sender As Object, e As EventArgs) Handles Me.Shown
+        lblScoreFinal.Text = "Score:  " + score.ToString
+
+    End Sub
 End Class

@@ -79,6 +79,12 @@
     <Compile Include="frmGameOver.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmItemShop.Designer.vb">
+      <DependentUpon>frmItemShop.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmItemShop.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmYouWin.Designer.vb">
       <DependentUpon>frmYouWin.vb</DependentUpon>
     </Compile>
@@ -113,6 +119,9 @@
   <ItemGroup>
     <EmbeddedResource Include="frmGameOver.resx">
       <DependentUpon>frmGameOver.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmItemShop.resx">
+      <DependentUpon>frmItemShop.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmYouWin.resx">
       <DependentUpon>frmYouWin.vb</DependentUpon>
